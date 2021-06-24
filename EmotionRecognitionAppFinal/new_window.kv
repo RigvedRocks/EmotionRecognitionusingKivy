@@ -1,0 +1,94 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+
+<FirstWindow>:
+    name: "first"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+        padding: 50
+        spacing: 20
+        
+        BoxLayout:
+            orientation: "horizontal"
+            
+            Image:
+                source:"welcome.jpg"
+        
+        BoxLayout:
+            orientation:"horizontal"
+
+            Label:
+                font_size:30
+                text: "Welcome to Emotion Recognition App."
+        BoxLayout:
+            orientation:"horizontal"        
+            Label:
+                font_size:30
+                text:
+                    "The app makes use of Convolutional Neural \
+                    Networks to recognize the emotion in the image."
+        BoxLayout:
+            orientation:"horizontal"
+            Label:
+                font_size:30
+                text:
+                    "The app categorises the image into 7 categories - \
+                    Angry,Confused,Embarassed,Excited,Happy,Sad and Scared."
+        BoxLayout:
+            orientation:"horizontal"
+
+            Label:
+                font_size:30
+                text:"Please click on the button below to get started."
+
+            
+        BoxLayout:
+            orientation:"horizontal"
+        
+            Button:
+                text: "Next"
+                font_size: 30
+                on_release: 
+                    app.root.current = "second"
+                    root.manager.transition.direction="left"
+
+<SecondWindow>:
+    id: second_window
+    name: "second"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width,root.height
+
+        
+            
+
+        # BoxLayout:
+        #     orientation: "horizontal"
+        Label:
+            id: my_label
+            text: "Predicted Class Appears Here"
+                    
+        Image:
+            id: img
+            source:""
+
+        FileChooserIconView:
+            id: filechooser
+            on_selection: second_window.recognition(filechooser.selection)
+
+        BoxLayout:
+            orientation:"horizontal"
+        
+            Button:
+                text: "Exit"
+                font_size: 30
+                on_release: app.get_running_app().stop()
+        
+            
+
+
+
+
